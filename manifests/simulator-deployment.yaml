@@ -1,0 +1,24 @@
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: simullator
+ namespace: axion
+spec:
+  selector:
+    matchLabels:
+      app: simullator
+  template:
+    metadata:
+      labels:
+        app: simullator
+    spec:
+      containers:
+      - name: simullator
+        image: akscon01.azurecr.io/axion-simulator:v1
+        ports: 
+        - containerPort: 8000
+        env:  
+        - name: DATABASE_URL
+          value:  "postgresql://axion:axion123@postgres:5432/axiondb"
